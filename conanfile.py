@@ -16,7 +16,7 @@ class SobjectizerConan(ConanFile):
 
     settings = "os", "compiler", "build_type", "arch"
 
-    options = {'boost_asio': ['none', 'static', 'shared']}
+    options = {'boost_libs': ['none', 'static', 'shared']}
     default_options = {'boost_asio': 'none'}
 
     requires = "http-parser/2.8.1@bincrafters/stable", "asio/1.12.0@bincrafters/stable", "fmt/5.2.1@bincrafters/stable"
@@ -35,7 +35,7 @@ class SobjectizerConan(ConanFile):
         cmake = CMake(self)
         cmake.definitions['RESTINIO_INSTALL'] = True
         cmake.definitions['RESTINIO_FIND_DEPS'] = False
-        cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = self.options.boost_asio
+        cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = self.options.boost_libs
         cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
         cmake.build()
         cmake.install()
