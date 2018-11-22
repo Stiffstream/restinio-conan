@@ -31,13 +31,9 @@ class SobjectizerConan(ConanFile):
     def build(self):
         cmake = CMake(self)
         cmake.definitions['RESTINIO_INSTALL'] = True
-        cmake.definitions['RESTINIO_TEST'] = False
-        cmake.definitions['RESTINIO_SAMPLE'] = False
-        cmake.definitions['RESTINIO_INSTALL_SAMPLES'] = False
-        cmake.definitions['RESTINIO_BENCH'] = False
-        cmake.definitions['RESTINIO_INSTALL_BENCHES'] = False
         cmake.definitions['RESTINIO_FIND_DEPS'] = False
-        cmake.configure(source_folder = self.source_subfolder + "/dev")
+        cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = 'none'
+        cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
         cmake.build()
         cmake.install()
 
