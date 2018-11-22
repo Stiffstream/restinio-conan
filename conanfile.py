@@ -17,7 +17,7 @@ class SobjectizerConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
     options = {'boost_libs': ['none', 'static', 'shared']}
-    default_options = {'boost_asio': 'none'}
+    default_options = {'boost_libs': 'none'}
 
     requires = "http-parser/2.8.1@bincrafters/stable", "asio/1.12.0@bincrafters/stable", "fmt/5.2.1@bincrafters/stable"
 
