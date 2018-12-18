@@ -20,7 +20,7 @@ conan remote add public-conan https://api.bintray.com/conan/bincrafters/public-c
 2. Add RESTinio to `conanfile.txt` of your project:
 ```
 [requires]
-restinio/0.4.8.3@stiffstream/testing
+restinio/0.4.8.4@stiffstream/testing
 ```
 RESTinio will use standalone version of Asio by default.
 
@@ -29,7 +29,7 @@ It you want to use RESTinio with Boost.Asio you have to:
 a) add Boost to your `conanfile.txt`:
 ```
 [requires]
-restinio/0.4.8.3@stiffstream/testing
+restinio/0.4.8.4@stiffstream/testing
 boost/1.68.0@conan/stable
 ```
 b) specify `boost_libs` option for RESTinio. This option should have `static` or `shared`. If you use `static` value then you should specify `shared=False` option for Boost libraries:
