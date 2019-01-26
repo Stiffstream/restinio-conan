@@ -4,7 +4,7 @@ import os
 
 class SobjectizerConan(ConanFile):
     name = "restinio"
-    version = "0.4.8.4"
+    version = "0.4.8.5"
 
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
@@ -19,7 +19,7 @@ class SobjectizerConan(ConanFile):
     options = {'boost_libs': ['none', 'static', 'shared']}
     default_options = {'boost_libs': 'none'}
 
-    requires = "http-parser/2.8.1@bincrafters/stable", "asio/1.12.0@bincrafters/stable", "fmt/5.2.1@bincrafters/stable"
+    requires = "http-parser/2.8.1@bincrafters/stable", "asio/1.12.0@bincrafters/stable", "fmt/5.3.0@bincrafters/stable"
 
     generators = "cmake"
 
