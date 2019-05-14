@@ -19,11 +19,22 @@ class SobjectizerConan(ConanFile):
     options = {'boost_libs': ['none', 'static', 'shared']}
     default_options = {'boost_libs': 'none'}
 
-    requires = "http-parser/2.8.1@bincrafters/stable", "asio/1.12.2@bincrafters/stable", "fmt/5.3.0@bincrafters/stable"
-
     generators = "cmake"
 
     source_subfolder = "restinio"
+
+    def requirements(self):
+        self.requires.add("http-parser/2.8.1@bincrafters/stable")
+        self.requires.add("fmt/5.3.0@bincrafters/stable")
+
+        if self.options.boost_libs == "none":
+            self.requires.add("asio/1.12.2@bincrafters/stable")
+        else:
+            self.requires.add("boost/1.69.0@conan/stable")
+            if self.options.boost_libs == "shared":
+                self.options["boost"].shared = True
+            else:
+                self.options["boost"].shared = False
 
     def source(self):
         source_url = "https://bitbucket.org/sobjectizerteam/restinio-0.4/downloads"
