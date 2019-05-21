@@ -15,13 +15,11 @@ class SobjectizerConan(ConanFile):
     )
 
     settings = "os", "compiler", "build_type", "arch"
-
     options = {'boost_libs': ['none', 'static', 'shared']}
     default_options = {'boost_libs': 'none'}
-
     generators = "cmake"
-
     source_subfolder = "restinio"
+    build_policy = "missing"
 
     def requirements(self):
         self.requires.add("http-parser/2.8.1@bincrafters/stable")
@@ -42,16 +40,20 @@ class SobjectizerConan(ConanFile):
         extracted_dir = "restinio-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
 
-    def build(self):
+    def _configure_cmake(self):
         cmake = CMake(self)
         cmake.definitions['RESTINIO_INSTALL'] = True
         cmake.definitions['RESTINIO_FIND_DEPS'] = False
         cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = self.options.boost_libs
         cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
-        cmake.build()
-        cmake.install()
+        return cmake
 
     def package(self):
-        self.copy("*.hpp", dst="include/restinio", src=self.source_subfolder + "/dev/restinio")
-        self.copy("license*", src=self.source_subfolder, dst="licenses",  ignore_case=True, keep_path=False)
+        cmake = self._configure_cmake()
+        self.output.info(cmake.definitions)
+        cmake.install()
 
+    def package_info(self):
+        self.info.header_only()
+        if self.options.boost_libs != "none":
+            self.cpp_info.defines.append("RESTINIO_USE_BOOST_ASIO")
