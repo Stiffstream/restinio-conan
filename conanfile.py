@@ -4,7 +4,7 @@ import os
 
 class SobjectizerConan(ConanFile):
     name = "restinio"
-    version = "0.6.0.1"
+    version = "0.6.1"
 
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
@@ -35,7 +35,7 @@ class SobjectizerConan(ConanFile):
                 self.options["boost"].shared = False
 
     def source(self):
-        source_url = "https://github.com/Stiffstream/restinio/releases/download/v.0.6.0.1"
+        source_url = "https://github.com/Stiffstream/restinio/releases/download/v.0.6.1"
         tools.get("{0}/restinio-{1}.zip".format(source_url, self.version))
         extracted_dir = "restinio-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
