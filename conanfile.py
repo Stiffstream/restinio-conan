@@ -16,7 +16,7 @@ class SobjectizerConan(ConanFile):
 
     settings = "os", "compiler", "build_type", "arch"
     options = {'boost_libs': ['none', 'static', 'shared'], 'use_openssl': ['false', 'true']}
-    default_options = {'boost_libs': 'none', 'use_openssl': 'true'}
+    default_options = {'boost_libs': 'none', 'use_openssl': 'false'}
     generators = "cmake"
     source_subfolder = "restinio"
     build_policy = "missing"
