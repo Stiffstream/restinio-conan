@@ -24,6 +24,13 @@ restinio/0.4.9@stiffstream/stable
 ```
 RESTinio will use standalone version of Asio by default.
 
+3. Install dependencies for your project:
+```bash
+conan install SOME_PATH --build=missing
+```
+
+### Usage of Boost.Asio
+
 It you want to use RESTinio with Boost.Asio you have to:
 
 a) add Boost to your `conanfile.txt`:
@@ -45,9 +52,13 @@ restinio:boost_libs=shared
 boost:shared=True
 ```
 
-3. Install dependencies for your project:
-```bash
-conan install SOME_PATH --build=missing
+### Usage of OpenSSL
+
+Since Nov 2019 the usage of OpenSSL can be turned off by `restinio:use_openssl` option. By the default this option has `true` value, but can be changed to `false`:
+
+```
+[options]
+restinio:use_openssl=false
 ```
 
 ## Adding RESTinio To Your CMakeLists.txt
