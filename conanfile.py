@@ -15,8 +15,8 @@ class SobjectizerConan(ConanFile):
     )
 
     settings = "os", "compiler", "build_type", "arch"
-    options = {'boost_libs': ['none', 'static', 'shared']}
-    default_options = {'boost_libs': 'none'}
+    options = {'boost_libs': ['none', 'static', 'shared'], 'use_openssl': ['false', 'true']}
+    default_options = {'boost_libs': 'none', 'use_openssl': 'false'}
     generators = "cmake"
     source_subfolder = "restinio"
     build_policy = "missing"
@@ -33,6 +33,9 @@ class SobjectizerConan(ConanFile):
                 self.options["boost"].shared = True
             else:
                 self.options["boost"].shared = False
+                
+        if self.options.use_openssl == "true":
+            self.requires.add("OpenSSL/1.1.1c@conan/stable")
 
     def source(self):
         source_url = "https://github.com/Stiffstream/restinio/releases/download/v.0.6.1"
