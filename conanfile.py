@@ -38,8 +38,8 @@ class SobjectizerConan(ConanFile):
             self.requires.add("OpenSSL/1.1.1c@conan/stable")
 
     def source(self):
-        source_url = "https://github.com/Stiffstream/restinio/releases/download/v.0.6.1"
-        tools.get("{0}/restinio-{1}.zip".format(source_url, self.version))
+        source_url = "https://github.com/Stiffstream/restinio/releases/download/"
+        tools.get("{0}v.{1}/restinio-{1}.zip".format(source_url, self.version))
         extracted_dir = "restinio-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
 
