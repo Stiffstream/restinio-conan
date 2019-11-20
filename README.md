@@ -54,17 +54,17 @@ boost:shared=True
 
 ### Usage of OpenSSL
 
-Since Nov 2019 the usage of OpenSSL can be turned on or off by `restinio:use_openssl` option. By the default this option has `false` value, but can be changed to `true`:
+Since v0.6.1 the usage of OpenSSL can be turned on or off by `restinio:use_openssl` option. By the default this option has `false` value, but can be changed to `true`:
 
 ```
 [options]
-restinio:use_openssl=True
+restinio:use_openssl=true
 ```
 If `restinio:use_openssl` is `true` the OpenSSL is automatically added to RESTinio's dependencies.
 
 ## Adding RESTinio To Your CMakeLists.txt
 
-Please note that SObjectizer should be added to your CMakeLists.txt via `find_package` command:
+Please note that RESTinio should be added to your CMakeLists.txt via `find_package` command:
 ```cmake
 ...
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
