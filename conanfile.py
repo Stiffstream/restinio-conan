@@ -4,7 +4,7 @@ import os
 
 class SobjectizerConan(ConanFile):
     name = "restinio"
-    version = "0.6.1"
+    version = "0.6.1.1"
 
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
