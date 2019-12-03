@@ -52,6 +52,7 @@ class SobjectizerConan(ConanFile):
         return cmake
 
     def package(self):
+        self.copy(src=self.source_subfolder, pattern="LICENSE*", dst="licenses")
         cmake = self._configure_cmake()
         self.output.info(cmake.definitions)
         cmake.install()
