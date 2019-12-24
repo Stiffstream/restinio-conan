@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 import os
 
 
-class SobjectizerConan(ConanFile):
+class RestinioConan(ConanFile):
     name = "restinio"
     version = "0.6.2"
 
@@ -35,7 +35,7 @@ class SobjectizerConan(ConanFile):
                 self.options["boost"].shared = False
                 
         if self.options.use_openssl == "true":
-            self.requires.add("OpenSSL/1.1.1c@conan/stable")
+            self.requires.add("openssl/1.1.1d")
 
     def source(self):
         source_url = "https://github.com/Stiffstream/restinio/releases/download/"
