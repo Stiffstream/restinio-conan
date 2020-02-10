@@ -4,7 +4,7 @@ import os
 
 class RestinioConan(ConanFile):
     name = "restinio"
-    version = "0.6.3.1"
+    version = "0.6.4"
 
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
@@ -23,7 +23,7 @@ class RestinioConan(ConanFile):
 
     def requirements(self):
         self.requires.add("http-parser/2.8.1@bincrafters/stable")
-        self.requires.add("fmt/6.0.0@bincrafters/stable")
+        self.requires.add("fmt/6.1.2")
 
         if self.options.boost_libs == "none":
             self.requires.add("asio/1.12.2@bincrafters/stable")
