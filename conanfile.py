@@ -47,6 +47,7 @@ class RestinioConan(ConanFile):
         cmake = CMake(self)
         cmake.definitions['RESTINIO_INSTALL'] = True
         cmake.definitions['RESTINIO_FIND_DEPS'] = False
+        cmake.definitions['RESTINIO_USE_EXTERNAL_HTTP_PARSER'] = True
         cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = self.options.boost_libs
         cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
         return cmake
