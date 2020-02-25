@@ -22,13 +22,13 @@ class RestinioConan(ConanFile):
     build_policy = "missing"
 
     def requirements(self):
-        self.requires.add("http-parser/2.8.1@bincrafters/stable")
+        self.requires.add("http_parser/2.9.2")
         self.requires.add("fmt/6.1.2")
 
         if self.options.boost_libs == "none":
-            self.requires.add("asio/1.12.2@bincrafters/stable")
+            self.requires.add("asio/1.12.2")
         else:
-            self.requires.add("boost/1.69.0@conan/stable")
+            self.requires.add("boost/1.69.0")
             if self.options.boost_libs == "shared":
                 self.options["boost"].shared = True
             else:
