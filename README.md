@@ -20,7 +20,7 @@ conan remote add public-conan https://api.bintray.com/conan/bincrafters/public-c
 2. Add RESTinio to `conanfile.txt` of your project:
 ```
 [requires]
-restinio/0.6.1@stiffstream/stable
+restinio/0.6.5@stiffstream/stable
 ```
 RESTinio will use standalone version of Asio by default.
 
@@ -61,6 +61,21 @@ Since v0.6.1 the usage of OpenSSL can be turned on or off by `restinio:use_opens
 restinio:use_openssl=true
 ```
 If `restinio:use_openssl` is `true` the OpenSSL is automatically added to RESTinio's dependencies.
+
+### Different versions of requirements
+
+RESTinio can work with different versions of its requirements. For example,
+http-parser version 2.8.1, 2.9.1 or 2.9.2 can be used. Or asio-1.12.2 or asio-1.1.14.0.
+
+RESTinio's recipe for Conan fixes some versions of RESTinio's dependecies but those version can be somewhat outdated. For example, RESTinio's Conan package requires Boost-1.69, but there are more fresh versions of Boost.
+
+So a user can have to override RESTinio's versions of requirements to more appropriate versions he/she needs:
+
+```
+[requires]
+restinio/0.6.5@stiffstream/stable
+boost/1.72.0
+```
 
 ## Adding RESTinio To Your CMakeLists.txt
 
