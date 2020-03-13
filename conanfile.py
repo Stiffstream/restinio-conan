@@ -15,8 +15,12 @@ class RestinioConan(ConanFile):
     )
 
     settings = "os", "compiler", "build_type", "arch"
-    options = {'boost_libs': ['none', 'static', 'shared'], 'use_openssl': ['false', 'true']}
-    default_options = {'boost_libs': 'none', 'use_openssl': 'false'}
+    options = {'boost_libs': ['none', 'static', 'shared'],
+               'use_openssl': ['false', 'true'],
+               'fmt_header_only': ['false', 'true']}
+    default_options = {'boost_libs': 'none',
+                       'use_openssl': 'false',
+                       'fmt_header_only': 'false'}
     generators = "cmake"
     source_subfolder = "restinio"
     build_policy = "missing"
@@ -24,6 +28,10 @@ class RestinioConan(ConanFile):
     def requirements(self):
         self.requires.add("http_parser/2.9.2")
         self.requires.add("fmt/6.1.2")
+        if self.options.fmt_header_only == "true":
+            self.options["fmt"].header_only = True
+        else:
+            self.options["fmt"].header_only = False
 
         if self.options.boost_libs == "none":
             self.requires.add("asio/1.12.2")
@@ -48,6 +56,7 @@ class RestinioConan(ConanFile):
         cmake.definitions['RESTINIO_INSTALL'] = True
         cmake.definitions['RESTINIO_FIND_DEPS'] = False
         cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = self.options.boost_libs
+        cmake.definitions['RESTINIO_FMT_HEADER_ONLY'] = self.options.fmt_header_only
         cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
         return cmake
 
