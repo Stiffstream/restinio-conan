@@ -31,25 +31,15 @@ conan install SOME_PATH --build=missing
 
 ### Usage of Boost.Asio
 
-It you want to use RESTinio with Boost.Asio you have to:
-
-a) add Boost to your `conanfile.txt`:
-```
-[requires]
-restinio/0.4.9@stiffstream/stable
-boost/1.68.0@conan/stable
-```
-b) specify `boost_libs` option for RESTinio. This option should have `static` or `shared`. If you use `static` value then you should specify `shared=False` option for Boost libraries:
+It you want to use RESTinio with Boost.Asio you can do so by configuring the options `restinio:boost_libs` in your `conanfile.txt`:
 ```
 [options]
 restinio:boost_libs=static
-boost:shared=False
 ```
-If you use `shared` value for `restinio:boost_libs` then you should specify `shared=True` option for Boost libraries:
+Or if you wish to link dynamically:
 ```
 [options]
 restinio:boost_libs=shared
-boost:shared=True
 ```
 
 ### Usage of OpenSSL
