@@ -20,7 +20,7 @@ conan remote add public-conan https://api.bintray.com/conan/bincrafters/public-c
 2. Add RESTinio to `conanfile.txt` of your project:
 ```
 [requires]
-restinio/0.6.5@stiffstream/stable
+restinio/0.6.6@stiffstream/stable
 ```
 RESTinio will use standalone version of Asio by default.
 
@@ -52,6 +52,17 @@ restinio:use_openssl=true
 ```
 If `restinio:use_openssl` is `true` the OpenSSL is automatically added to RESTinio's dependencies.
 
+### Usage of fmtlib
+
+Since v0.6.6 RESTinio allows to use fmtlib in header-only or compiled form.
+
+By the default fmtlib is used in the compiled form. If header-only version of fmtlib is needed then it can be forced by:
+
+```
+[options]
+restinio:fmt_header_only=true
+```
+
 ### Different versions of requirements
 
 RESTinio can work with different versions of its requirements. For example,
@@ -63,7 +74,7 @@ So a user can have to override RESTinio's versions of requirements to more appro
 
 ```
 [requires]
-restinio/0.6.5@stiffstream/stable
+restinio/0.6.6@stiffstream/stable
 boost/1.72.0
 ```
 
