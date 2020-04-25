@@ -44,7 +44,7 @@ class RestinioConan(ConanFile):
                 self.options["boost"].shared = False
                 
         if self.options.use_openssl == "true":
-            self.requires("openssl/1.1.1d")
+            self.requires("openssl/1.1.1g")
 
     def source(self):
         source_url = "https://github.com/Stiffstream/restinio/releases/download/"
