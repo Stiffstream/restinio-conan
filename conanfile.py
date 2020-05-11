@@ -28,6 +28,10 @@ class RestinioConan(ConanFile):
     def requirements(self):
         self.requires.add("http_parser/2.9.2")
         self.requires.add("fmt/6.1.2")
+        self.requires("expected-lite/0.4.0")
+        self.requires("optional-lite/3.2.0")
+        self.requires("string-view-lite/1.3.0")
+        self.requires("variant-lite/1.2.2")
         if self.options.fmt_header_only == "true":
             self.options["fmt"].header_only = True
         else:
@@ -57,6 +61,10 @@ class RestinioConan(ConanFile):
         cmake.definitions['RESTINIO_FIND_DEPS'] = False
         cmake.definitions['RESTINIO_USE_BOOST_ASIO'] = self.options.boost_libs
         cmake.definitions['RESTINIO_FMT_HEADER_ONLY'] = self.options.fmt_header_only
+        cmake.definitions['RESTINIO_USE_EXTERNAL_EXPECTED_LITE'] = True
+        cmake.definitions['RESTINIO_USE_EXTERNAL_OPTIONAL_LITE'] = True
+        cmake.definitions['RESTINIO_USE_EXTERNAL_STRING_VIEW_LITE'] = True
+        cmake.definitions['RESTINIO_USE_EXTERNAL_VARIANT_LITE'] = True
         cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
         return cmake
 
@@ -68,5 +76,7 @@ class RestinioConan(ConanFile):
 
     def package_info(self):
         self.info.header_only()
+        self.cpp_info.defines.extend(["RESTINIO_EXTERNAL_EXPECTED_LITE", "RESTINIO_EXTERNAL_OPTIONAL_LITE",
+                                      "RESTINIO_EXTERNAL_STRING_VIEW_LITE", "RESTINIO_EXTERNAL_VARIANT_LITE"])
         if self.options.boost_libs != "none":
             self.cpp_info.defines.append("RESTINIO_USE_BOOST_ASIO")
