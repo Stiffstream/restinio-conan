@@ -20,7 +20,7 @@ conan remote add public-conan https://api.bintray.com/conan/bincrafters/public-c
 2. Add RESTinio to `conanfile.txt` of your project:
 ```
 [requires]
-restinio/0.6.6@stiffstream/stable
+restinio/0.6.7@stiffstream/stable
 ```
 RESTinio will use standalone version of Asio by default.
 
@@ -74,7 +74,7 @@ So a user can have to override RESTinio's versions of requirements to more appro
 
 ```
 [requires]
-restinio/0.6.6@stiffstream/stable
+restinio/0.6.7@stiffstream/stable
 boost/1.72.0
 ```
 

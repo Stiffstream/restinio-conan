@@ -4,7 +4,7 @@ import os
 
 class RestinioConan(ConanFile):
     name = "restinio"
-    version = "0.6.6"
+    version = "0.6.7"
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
     homepage = "https://github.com/Stiffstream/restinio"
@@ -66,11 +66,11 @@ class RestinioConan(ConanFile):
         cmake.definitions['RESTINIO_USE_EXTERNAL_OPTIONAL_LITE'] = True
         cmake.definitions['RESTINIO_USE_EXTERNAL_STRING_VIEW_LITE'] = True
         cmake.definitions['RESTINIO_USE_EXTERNAL_VARIANT_LITE'] = True
-        cmake.configure(source_folder = self.source_subfolder + "/dev/restinio")
+        cmake.configure(source_folder = self._source_subfolder + "/dev/restinio")
         return cmake
 
     def package(self):
-        self.copy(src=self.source_subfolder, pattern="LICENSE*", dst="licenses")
+        self.copy(src=self._source_subfolder, pattern="LICENSE*", dst="licenses")
         cmake = self._configure_cmake()
         self.output.info(cmake.definitions)
         cmake.install()
