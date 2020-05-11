@@ -5,16 +5,14 @@ import os
 class RestinioConan(ConanFile):
     name = "restinio"
     version = "0.6.6"
-
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
-
+    homepage = "https://github.com/Stiffstream/restinio"
     description = (
             "RESTinio is a header-only C++14 library that gives you "
             "an embedded HTTP/Websocket server."
     )
-
-    settings = "os", "compiler", "build_type", "arch"
+    topics = ( "restinio" , "http", "https", "websocket", "tls", "header-only")
     options = {'boost_libs': ['none', 'static', 'shared'],
                'use_openssl': ['false', 'true'],
                'fmt_header_only': ['false', 'true']}
@@ -22,9 +20,12 @@ class RestinioConan(ConanFile):
                        'use_openssl': 'false',
                        'fmt_header_only': 'false'}
     generators = "cmake"
-    source_subfolder = "restinio"
     build_policy = "missing"
 
+    @property
+    def _source_subfolder(self):
+        return "restinio"
+    
     def requirements(self):
         self.requires.add("http_parser/2.9.2")
         self.requires.add("fmt/6.1.2")
@@ -38,22 +39,22 @@ class RestinioConan(ConanFile):
             self.options["fmt"].header_only = False
 
         if self.options.boost_libs == "none":
-            self.requires.add("asio/1.12.2")
+            self.requires("asio/1.12.2")
         else:
-            self.requires.add("boost/1.69.0")
+            self.requires("boost/1.69.0")
             if self.options.boost_libs == "shared":
                 self.options["boost"].shared = True
             else:
                 self.options["boost"].shared = False
                 
         if self.options.use_openssl == "true":
-            self.requires.add("openssl/1.1.1d")
+            self.requires("openssl/1.1.1g")
 
     def source(self):
         source_url = "https://github.com/Stiffstream/restinio/releases/download/"
         tools.get("{0}v.{1}/restinio-{1}.zip".format(source_url, self.version))
         extracted_dir = "restinio-" + self.version
-        os.rename(extracted_dir, self.source_subfolder)
+        os.rename(extracted_dir, self._source_subfolder)
 
     def _configure_cmake(self):
         cmake = CMake(self)
