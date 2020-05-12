@@ -4,7 +4,7 @@ import os
 
 class RestinioConan(ConanFile):
     name = "restinio"
-    version = "0.6.7"
+    version = "0.6.7.1"
     license = "BSD-3-Clause"
     url = "https://github.com/Stiffstream/restinio-conan"
     homepage = "https://github.com/Stiffstream/restinio"
