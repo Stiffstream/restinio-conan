@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Conan test build folder
+build/
